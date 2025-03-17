@@ -39,19 +39,25 @@ Stage: Data Understanding (Stage 2 of CRISP-DM)
 Task:  
 I am working on the Data Understanding phase of my credit scoring project. I need a simple Python script to explore the dataset stored in the `"data/"` folder.  
 
-### Requirements:
-- Load the dataset using pandas.
-- Display basic descriptive statistics (e.g., `.describe()` for numerical columns).
-- Plot histograms for key numerical features to analyze distributions.
-- Handle missing values by showing the count of missing entries per column.
+Data columns:
+Index(['ID', 'Customer_ID', 'Month', 'Name', 'Age', 'SSN', 'Occupation',
+       'Annual_Income', 'Monthly_Inhand_Salary', 'Num_Bank_Accounts',
+       'Num_Credit_Card', 'Interest_Rate', 'Num_of_Loan', 'Type_of_Loan',
+       'Delay_from_due_date', 'Num_of_Delayed_Payment', 'Changed_Credit_Limit',
+       'Num_Credit_Inquiries', 'Credit_Mix', 'Outstanding_Debt',
+       'Credit_Utilization_Ratio', 'Credit_History_Age',
+       'Payment_of_Min_Amount', 'Total_EMI_per_month',
+       'Amount_invested_monthly', 'Payment_Behaviour', 'Monthly_Balance',
+       'Credit_Score'],
+      dtype='object')
 
 ### Custom Section (Do Not Generate Full Script)  
+- The data has already been loaded into the train_data variable.
 Now, I need a **specific piece of code** to do the following:  
 **[INSERT YOUR REQUEST HERE]**  
 Make sure to provide only that specific code snippet and not the full exploratory script.  
 
 Performance is not important; the goal is to **test and explore**. Add necessary comments for clarity.
-
 
 ```
 
