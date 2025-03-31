@@ -271,6 +271,12 @@ columns_to_drop = [
   - **Fix**: Convert to total months for consistency (e.g.,   "22 Years and 1 Months" → 22 * 12 + 1 = 265).
 
 - **Type_of_Loan** (object -> )
+  - Strings like "Auto Loan, Credit-Builder Loan, Personal Loan,..."
+  - **Fix** : 
+    - **1-** removes any trailing spaces or commas 
+    - **2-** function splits each string by ", " into a list (e.g., ["Auto Loan", "Student Loan"]), 
+    - **3-** use **MultiLabelBinarizer** creates a binary matrix where each column represents a unique loan type
+
 
 - **Month** (object -> int64):
   - 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'
