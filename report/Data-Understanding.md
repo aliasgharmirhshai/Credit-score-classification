@@ -249,10 +249,19 @@ columns_to_drop = [
 - **Type_of_Loan** (object -> )
   - Strings like "Auto Loan, Credit-Builder Loan, Personal Loan,..."
   - **Fix** : 
-    - **1-** removes any trailing spaces or commas 
-    - **2-** function splits each string by ", " into a list (e.g., ["Auto Loan", "Student Loan"]), 
-    - **3-** use **MultiLabelBinarizer** creates a binary matrix where each column represents a unique loan type
-
+  - **1-** Standardized text formatting:  
+    - Converted all text to lowercase.  
+    - Removed `"and "` to keep a consistent delimiter.  
+    - Replaced `", "` with `","` to ensure uniform splitting.  
+    - Stripped extra spaces.  
+  - **2-** Extracted unique loan types dynamically:  
+    - Used a custom function `get_Diff_Values_Colum()` to extract unique loan types.  
+    - It processes each entry, removes unnecessary characters, and splits values correctly.  
+  - **3-** Ensured proper value distribution analysis using:  
+    ```python
+    df['Type_of_Loan'].value_counts(dropna=False).head(20)
+    ```  
+  - **4-** Created a dictionary mapping unique loan types for validation.  
 
 - **Month** (object -> int64):
   - 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'
