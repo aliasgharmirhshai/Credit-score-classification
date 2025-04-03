@@ -162,32 +162,8 @@ columns_to_drop = [
 - **Check for Duplicates:**
   - Review all 16 unique values for misspellings or variations (e.g., "Eng." vs. "Engineer"). Merge duplicates if found.
 
-#### 2. Type_of_Loan
-**Summary:**
 
-- Unique values: 6,261
-- Most common value: "Not Specified" (1.41%, 1,408 occurrences)
-- Top categories: "Not Specified" (1.41%), Credit-Builder Loan (1.28%), Personal Loan (1.27%), Debt Consolidation Loan (1.26%), Student Loan (1.24%)
-
-**Issues:**
-
-- 6,261 unique values suggest this column contains combinations of loans or free-text entries.
-- "Not Specified" indicates missing data.
-
-**Cleaning Steps:**
-
-- **Handle "Not Specified":**
-  - Replace "Not Specified" with "Unknown" for clarity and consistency with other columns.
-- **Parse Combinations:**
-  - Check if entries are combinations (e.g., "Auto Loan, Personal Loan"). If so:
-    - Split into separate columns (e.g., "Loan_Type_1", "Loan_Type_2") or create binary indicators (e.g., "Has_Personal_Loan: Yes/No").
-    - If splitting isn’t feasible, group similar loans into broader categories (e.g., "Consumer Loans" for Personal, Auto, etc.).
-- **Reduce Categories:**
-  - With 6,261 unique values, consider clustering similar loans (e.g., all "Student Loan" variants into one category) to simplify analysis.
-- **Standardize Format:**
-  - Use title case (e.g., "credit-builder loan" → "Credit-Builder Loan") and ensure consistent separators (e.g., commas) in combinations.
-
-#### 3. Credit_Mix
+#### 2. Credit_Mix
 **Summary:**
 
 - Unique values: 4
@@ -206,7 +182,7 @@ columns_to_drop = [
 - **Standardize Format:**
   - Ensure all values are in title case (e.g., "standard" → "Standard") and free of extra spaces.
 
-#### 4. Payment_of_Min_Amount
+#### 3. Payment_of_Min_Amount
 **Summary:**
 
 - Unique values: 3
@@ -294,7 +270,7 @@ columns_to_drop = [
 
 ---
 
-## 7. Handling Missing Data
+## 6. Handling Missing Data
 
 ### Missing Data Report
 
@@ -335,7 +311,12 @@ columns_to_drop = [
 
 ---
 
-## 8. Check for Outliers
+## 7. Check for Outliers
+
+### Monthly_Inhand_Salary
+  - **Mean** : 4,194
+  - **Std** : 3,184
+
 
 ---
 
