@@ -301,23 +301,6 @@ columns_to_drop = [
 
 ![alt text](image.png)
 
-### 🔧 How to Fix ? 
-
-- **Remove the "Name" column** : no analytical value.
-- **Use MICE** : This method leverages relationships between variables and provides multiple imputed datasets for robust analysis
-
-  ``` 
-  [
-    "Monthly_Inhand_Salary"
-    "Type_of_Loan"
-    "Num_of_Delayed_Payment"
-    "Num_Credit_Inquiries"
-    "Credit_History_Age"
-    "Amount_invested_monthly"
-    "Monthly_Balance"
-  ]
-    ```
-
 ---
 
 ## 7. Check for Outliers
