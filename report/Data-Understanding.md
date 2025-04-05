@@ -121,6 +121,7 @@ columns_to_drop = [
 
 - **Age (object → int64)**  
   - Age should be stored as an integer.  
+  - **Negative Values** : This column has 886 negative values.
   - **Fix**: Convert to int after handling inconsistencies.
 
 ---
