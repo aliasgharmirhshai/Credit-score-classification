@@ -108,8 +108,9 @@ def clean_categorical(df):
     }
     cleaned_df['Payment_Behaviour'] = cleaned_df['Payment_Behaviour'].replace(duplicate_mapping)
     
-    # Clean 'Credit_Score'
-    cleaned_df['Credit_Score'] = cleaned_df['Credit_Score'].str.strip().str.title()
+    # Clean 'Credit_Score' if it exists
+    if 'Credit_Score' in cleaned_df.columns:
+        cleaned_df['Credit_Score'] = cleaned_df['Credit_Score'].str.strip().str.title()
     
     return cleaned_df
 
