@@ -2,6 +2,72 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
+def categorical_summary_stats(df, categorical_columns=None):
+    """
+    Generate summary statistics for categorical variables in a dataframe.
+    
+    Parameters:
+    df (pandas.DataFrame): The dataframe to analyze
+    categorical_columns (list, optional): List of categorical column names to analyze.
+                                         If None, will try to identify categorical columns.
+    
+    Returns:
+    dict: Dictionary where keys are column names and values are dictionaries of summary statistics
+    """    
+    # If no categorical columns specified, try to identify them
+    if categorical_columns is None:
+        # Select object, category, and boolean dtypes
+        categorical_columns = df.select_dtypes(include=['object', 'category', 'bool']).columns.tolist()
+        
+        # Also include numeric columns with low cardinality (fewer than 10 unique values)
+        for col in df.select_dtypes(include=['number']).columns:
+            if df[col].nunique() < 10:
+                categorical_columns.append(col)
+    
+    summary = {}
+    
+    for col in categorical_columns:
+        if col not in df.columns:
+            continue
+            
+        # Basic stats
+        value_counts = df[col].value_counts()
+        unique_values = df[col].unique()
+        missing_values = df[col].isna().sum()
+        
+        # Get mode (most frequent value)
+        mode_value = df[col].mode()[0] if not df[col].empty else None
+        mode_count = value_counts.iloc[0] if not value_counts.empty else 0
+        mode_percentage = (mode_count / len(df)) * 100 if len(df) > 0 else 0
+        
+        # Get top 5 categories with counts and percentages
+        top_categories = []
+        for value, count in value_counts.head(5).items():
+            percentage = (count / len(df)) * 100
+            top_categories.append({
+                'value': value,
+                'count': count,
+                'percentage': round(percentage, 2)
+            })
+        
+        # Compile column summary
+        summary[col] = {
+            'unique_values': len(unique_values),
+            'missing_values': missing_values,
+            'missing_percentage': round((missing_values / len(df)) * 100, 2) if len(df) > 0 else 0,
+            'mode': {
+                'value': mode_value,
+                'count': mode_count,
+                'percentage': round(mode_percentage, 2)
+            },
+            'top_categories': top_categories,
+            'all_categories': [str(v) for v in unique_values]
+        }
+    
+    return summary
+
 
 def report_missing_data(df, dataset_name="Dataset"):
     """
